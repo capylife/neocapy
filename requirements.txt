@@ -1,0 +1,4 @@
+matrix-nio[e2e]
+aiohttp
+motor
+aiofiles
