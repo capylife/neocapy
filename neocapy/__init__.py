@@ -120,7 +120,7 @@ class NeoCapy:
                         "_id": json["_id"]
                     })
 
-                    logger.info(f"Posted {json['name']}!")
+                    logger.info(f"Posted {json['name']} to {MATRIX_ROOM_ID}!")
 
     async def close(self) -> None:
         await self.__client.close()
