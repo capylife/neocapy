@@ -1,4 +1,3 @@
 matrix-nio
 aiohttp
 motor
-aiofiles
