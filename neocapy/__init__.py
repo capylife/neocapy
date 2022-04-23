@@ -35,6 +35,7 @@ class NeoCapy:
         login = await self.__client.login(MATRIX_PASSWORD)
 
         if not isinstance(login, LoginResponse):
+            logger.info("Login details invalid!")
             await self.close()
             return
 
