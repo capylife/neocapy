@@ -40,5 +40,3 @@ networks:
 volumes:
   mongodbdata:
     driver: local
-  capycorddata:
-    driver: local
