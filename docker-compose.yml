@@ -7,7 +7,10 @@ services:
       context: ./
     restart: unless-stopped
     environment:
-      BOT_TOKEN: ""
+      MATRIX_USER: ""
+      MATRIX_PASSWORD: ""
+      MATRIX_ROOM_ID: ""
+      MATRIX_SERVER: "https://matrix.org"
 
       CAPY_LIFE_LINK: "https://capy.life"
       CAPY_API_LINK: "https://capy.life/api/"
