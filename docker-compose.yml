@@ -7,11 +7,13 @@ services:
       context: ./
     restart: unless-stopped
     environment:
-      BOT_TOKEN: ""
+      MATRIX_USER: ""
+      MATRIX_PASSWORD: ""
+      MATRIX_ROOM_ID: ""
+      MATRIX_SERVER: "https://matrix.org"
 
       CAPY_LIFE_LINK: "https://capy.life"
       CAPY_API_LINK: "https://capy.life/api/"
-      INVITE_LINK: "https://capy.life/discord"
 
       MONGO_IP: "neocapy_mongodb"
       MONGO_PORT: 27017

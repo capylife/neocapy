@@ -22,6 +22,10 @@ logger.addHandler(consoleHandler)
 
 
 class NeoCapy:
+    CONTENT_TYPES = {
+        "image/webp": ".webp"
+    }
+
     async def run(self) -> None:
         self.__client = AsyncClient(
             MATRIX_SERVER, MATRIX_USER,
@@ -35,6 +39,7 @@ class NeoCapy:
         login = await self.__client.login(MATRIX_PASSWORD)
 
         if not isinstance(login, LoginResponse):
+            logger.info("Login details invalid!")
             await self.close()
             return
 
@@ -70,16 +75,22 @@ class NeoCapy:
                         ))
                         continue
 
-                    file_ext = mimetypes.guess_extension(
-                        img_resp.headers["Content-Type"]
-                    )
-                    if not file_ext:
-                        logger.warn((
-                            "Unable to determine file ext from"
-                            "Content type "
-                            f"'{img_resp.headers['Content-Type']}'"
-                        ))
-                        continue
+                    if (img_resp.headers["Content-Type"] in
+                            self.CONTENT_TYPES):
+                        file_ext = self.CONTENT_TYPES[
+                            img_resp.headers["Content-Type"]
+                        ]
+                    else:
+                        file_ext = mimetypes.guess_extension(
+                            img_resp.headers["Content-Type"]
+                        )
+                        if not file_ext:
+                            logger.warn((
+                                "Unable to determine file ext from "
+                                "Content type "
+                                f"'{img_resp.headers['Content-Type']}'"
+                            ))
+                            continue
 
                     image = await img_resp.read()
                     image_size = len(image)
